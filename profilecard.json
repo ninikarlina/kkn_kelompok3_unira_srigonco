@@ -5,7 +5,7 @@
     "handle": "rendi",
     "status": "Online",
     "contactText": "About Me",
-    "avatarUrl": "/images/avatar2.png",
+    "avatarUrl": "./images/avatar2.png",
     "showUserInfo": true,
     "enableTilt": true,
     "enableMobileTilt": false
@@ -16,7 +16,7 @@
     "handle": "farih",
     "status": "Offline",
     "contactText": "About Me",
-    "avatarUrl": "/images/avatar2.png",
+    "avatarUrl": "./images/avatar2.png",
     "showUserInfo": true,
     "enableTilt": true,
     "enableMobileTilt": false
@@ -27,7 +27,7 @@
     "handle": "irsyad",
     "status": "Online",
     "contactText": "About Me",
-    "avatarUrl": "/images/avatar2.png",
+    "avatarUrl": "./images/avatar2.png",
     "showUserInfo": true,
     "enableTilt": true,
     "enableMobileTilt": false
@@ -39,7 +39,7 @@
     "handle": "ike",
     "status": "Online",
     "contactText": "About Me",
-    "avatarUrl": "/images/avatar2.png",
+    "avatarUrl": "./images/avatar2.png",
     "showUserInfo": true,
     "enableTilt": true,
     "enableMobileTilt": false
