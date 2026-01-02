@@ -124,7 +124,37 @@
   }
 }
 
+/* Hero Section Hover Effects */
+.hero-title {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.hero-title:hover {
+  transform: scale(1.05);
+  outline-color: #5227FF !important;
+  -webkit-text-stroke-color: #5227FF !important;
+  box-shadow: 0 0 20px rgba(82, 39, 255, 0.5);
+}
+
+.hero-subtitle {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.hero-subtitle:hover {
+  transform: translateY(-5px);
+  outline-color: #FF9FFC !important;
+  -webkit-text-stroke-color: #FF9FFC !important;
+  box-shadow: 0 5px 15px rgba(255, 159, 252, 0.4);
+  color: #FF9FFC !important;
+}
+
 /* Responsive Grid for Profile Cards */
+.profile-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 @media (max-width: 1200px) {
   .profile-grid {
     grid-template-columns: repeat(3, 1fr) !important;
@@ -145,5 +175,48 @@
     grid-template-columns: 1fr !important;
     gap: 20px !important;
     padding: 0 5vw;
+  }
+}
+
+/* Additional responsive utilities */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Adjust touch targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize animations for mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure content is accessible on all screen sizes */
+@media (orientation: landscape) and (max-height: 500px) {
+  .page-section {
+    min-height: auto !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
   }
 }
