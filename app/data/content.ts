@@ -30,13 +30,13 @@ export const roadmapItems = [
 export const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'Portfolio', ariaLabel: 'View our portfolio', link: '/portfolio' },
-  { label: 'Article', ariaLabel: 'Learn about us', link: '#about' }
+  { label: 'Article', ariaLabel: 'Learn about us', link: 'https://artikel-srigonco.vercel.app' }
 ]
 
 export const socialItems = [
   { label: 'Instagram', link: 'https://www.instagram.com/kknt_srigonco.02' },
   { label: 'Tiktok', link: 'https://www.tiktok.com/@kknt.srigonco' },
-  { label: 'Artikel', link: 'https://twitter.com' }
+  { label: 'Artikel', link: 'https://artikel-srigonco.vercel.app' }
 ]
 
 export const pages = [

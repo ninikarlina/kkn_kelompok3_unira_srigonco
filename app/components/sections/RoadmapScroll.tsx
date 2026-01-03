@@ -92,9 +92,9 @@ const RoadmapScroll = forwardRef<RoadmapScrollHandle>((props, ref) => {
         </div>
 
         {/* Right: Slide Content with Anime Cards */}
-        <div className="right flex-1 relative min-h-45 sm:min-h-55 md:min-h-100">
+        <div className="right flex-1 relative min-h-52 sm:min-h-55 md:min-h-100">
           {roadmapItems.map((item) => (
-            <div key={item.id} className="roadmap-slide absolute w-full md:w-3/4 top-1/2 -translate-y-1/2 right-0 opacity-0 invisible bg-white p-2 sm:p-2.5 md:p-6 rounded-lg sm:rounded-xl md:rounded-3xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row gap-2 md:gap-6 items-center border border-black sm:border-2 md:border-4 overflow-hidden group">
+            <div key={item.id} className="roadmap-slide absolute w-full md:w-3/4 top-1/2 -translate-y-1/2 right-0 opacity-0 invisible bg-white p-3 sm:p-2.5 md:p-6 rounded-lg sm:rounded-xl md:rounded-3xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row gap-2 md:gap-6 items-center border border-black sm:border-2 md:border-4 overflow-hidden group">
                {/* Anime corner accent */}
                <div className="absolute top-0 left-0 w-4 h-4 sm:w-6 sm:h-6 md:w-16 md:h-16 bg-yellow-300 opacity-30" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}></div>
                <div className="absolute bottom-0 right-0 w-4 h-4 sm:w-6 sm:h-6 md:w-16 md:h-16 bg-cyan-300 opacity-30" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }}></div>
@@ -103,7 +103,7 @@ const RoadmapScroll = forwardRef<RoadmapScrollHandle>((props, ref) => {
                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, black 1px, transparent 1px)', backgroundSize: '6px 6px' }}></div>
                
                {/* Image with anime filter */}
-               <div className="relative w-full md:w-1/2 h-20 sm:h-28 md:h-48 rounded-md sm:rounded-lg md:rounded-2xl overflow-hidden border border-black sm:border-2 md:border-4 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] sm:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+               <div className="relative w-full md:w-1/2 h-24 sm:h-28 md:h-48 rounded-md sm:rounded-lg md:rounded-2xl overflow-hidden border border-black sm:border-2 md:border-4 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] sm:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover brightness-110 contrast-125 saturate-150 group-hover:scale-110 transition-transform duration-500" />
                   {/* Speed lines overlay - Hidden on mobile */}
                   <div className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300">

@@ -474,7 +474,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[4em_1.5em_1.5em_1.5em] sm:p-[5em_1.5em_1.5em_1.5em] md:p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-md pointer-events-auto"
+          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[4.5em_1.5em_2em_1.5em] sm:p-[5em_1.5em_1.5em_1.5em] md:p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-md pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
         >
@@ -511,7 +511,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </ul>
 
             {displaySocials && socialItems && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto pt-4 sm:pt-6 md:pt-8 flex flex-col gap-2 sm:gap-2.5 md:gap-3" aria-label="Social links">
+              <div className="sm-socials mt-auto pt-3 sm:pt-6 md:pt-8 flex flex-col gap-2 sm:gap-2.5 md:gap-3 mb-2" aria-label="Social links">
                 <h3 className="sm-socials-title m-0 text-sm sm:text-base font-medium text-(--sm-accent,#ff0000)">Socials</h3>
                 <ul
                   className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-2 sm:gap-3 md:gap-4 flex-wrap"
@@ -558,7 +558,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 4em 1.5em 1.5em 1.5em; overflow-y: auto; z-index: 10; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 4.5em 1.5em 2em 1.5em; overflow-y: auto; z-index: 10; }
 @media (min-width: 640px) { .sm-scope .staggered-menu-panel { width: clamp(260px, 50vw, 380px); padding: 5em 1.5em 1.5em 1.5em; } }
 @media (min-width: 768px) { .sm-scope .staggered-menu-panel { width: clamp(260px, 38vw, 420px); padding: 6em 2em 2em 2em; } }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
@@ -570,7 +570,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
 @media (min-width: 640px) { .sm-scope .sm-panel-inner { gap: 1rem; } }
 @media (min-width: 768px) { .sm-scope .sm-panel-inner { gap: 1.25rem; } }
-.sm-scope .sm-socials { margin-top: auto; padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.sm-scope .sm-socials { margin-top: auto; padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem; }
 @media (min-width: 640px) { .sm-scope .sm-socials { padding-top: 1.5rem; gap: 0.625rem; } }
 @media (min-width: 768px) { .sm-scope .sm-socials { padding-top: 2rem; gap: 0.75rem; } }
 .sm-scope .sm-socials-title { margin: 0; font-size: 0.875rem; font-weight: 500; color: var(--sm-accent, #ff0000); }
