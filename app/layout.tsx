@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "KKN Portfolio - Kelompok 3",
   description: "Portfolio KKN-T Kelompok 3 Desa Srigonco Bantur",
+  icons: {
+    icon: '/logokkn.svg',
+    shortcut: '/logokkn.svg',
+    apple: '/logokkn.svg',
+  },
 };
 
 export const viewport: Viewport = {
