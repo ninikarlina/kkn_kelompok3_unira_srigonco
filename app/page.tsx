@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -8,7 +8,7 @@ import { Flip } from 'gsap/Flip'
 import { Observer } from 'gsap/Observer'
 import { CustomEase } from 'gsap/CustomEase'
 import { StaggeredMenu } from './components/StaggeredMenu'
-import { backgroundItems, menuItems, socialItems, pages } from './data/content'
+import { backgroundItems, menuItems, socialItems, pages, randomBackgrounds } from './data/content'
 import DetailsOverlay from './components/DetailsOverlay'
 import BackgroundGrid from './components/sections/BackgroundGrid'
 import VisionInteraction from './components/sections/VisionInteraction'
@@ -27,6 +27,21 @@ export default function Home() {
   const roadmapRef = useRef<RoadmapScrollHandle>(null)
   const effectsRef = useRef<TransitionEffectsHandle>(null)
   const [detailData, setDetailData] = useState(backgroundItems[0])
+  
+  // Generate random backgrounds for each section - client side only to avoid hydration mismatch
+  const [sectionBackgrounds, setSectionBackgrounds] = useState<string[]>(() => 
+    pages.map(() => randomBackgrounds[0]) // Use first background as default for SSR
+  )
+  
+  useEffect(() => {
+    // Generate random backgrounds only on client side after hydration
+    setSectionBackgrounds(
+      pages.map(() => {
+        const randomIndex = Math.floor(Math.random() * randomBackgrounds.length)
+        return randomBackgrounds[randomIndex]
+      })
+    )
+  }, [])
   
   const { contextSafe } = useGSAP(() => {
     const sections = gsap.utils.toArray<HTMLElement>('.page-section')
@@ -253,7 +268,18 @@ export default function Home() {
           <div className="outer w-full h-full overflow-hidden">
             <div className="inner w-full h-full relative">
               {/* Background Layer */}
-              <div className="bg absolute top-0 left-0 w-full h-full" style={{ backgroundColor: page.bgColor }}></div>
+              <div 
+                className="bg absolute top-0 left-0 w-full h-full" 
+                style={{ 
+                  backgroundImage: `url(${sectionBackgrounds[index]})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-white/70"></div>
+              </div>
               
               {/* Content Layer */}
               <div className="content-container relative z-10 h-full flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-20 py-6 sm:py-8 md:py-0 overflow-y-auto md:overflow-visible">
@@ -309,10 +335,7 @@ export default function Home() {
                               />
                             </div>
                             
-                            {/* Floating Badge */}
-                            <div className="absolute -bottom-2.5 sm:-bottom-3 md:-bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-2.5 sm:px-3 md:px-6 py-1 sm:py-1.5 md:py-3 rounded-full shadow-md md:shadow-xl border border-gray-100 md:border-2 whitespace-nowrap">
-                              <p className="text-[10px] sm:text-xs md:text-sm font-bold text-gray-800">Filosofi Logo</p>
-                            </div>
+
                           </div>
                         </div>
                       ) : (

@@ -1,7 +1,30 @@
+export const randomBackgrounds = [
+  "/random-bg/Texturelabs_Glass_132M.jpg",
+  "/random-bg/Texturelabs_Grunge_204M.jpg",
+  "/random-bg/Texturelabs_InkPaint_171M.png",
+  "/random-bg/Texturelabs_Water_131M.jpg",
+  "/random-bg/Texturelabs_Wood_120M.jpg",
+  "/random-bg/Texturelabs_Wood_169M.jpg",
+  "/random-bg/Texturelabs_Wood_260M.jpg",
+  "/random-bg/Texturelabs_Wood_285M.jpg"
+]
+
 export const backgroundItems = [
-  { id: 1, title: "Coming Soon", secondary: "ngenteni kkn", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", img: "/images/LandingFoto/comingsoon.png" },
-  { id: 2, title: "Coming Soon", secondary: "ngenteni kkn", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", img: "/images/LandingFoto/comingsoon.png" },
-  { id: 3, title: "Coming Soon", secondary: "ngenteni kkn", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", img: "/images/LandingFoto/comingsoon.png" },
+  { id: 1, title: "Coming Soon", 
+    secondary: "ngenteni kkn", 
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
+    img: "/images/LandingFoto/comingsoon.png" 
+  },
+  { id: 2, title: "Coming Soon", 
+    secondary: "ngenteni kkn", 
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
+    img: "/images/LandingFoto/comingsoon.png" 
+  },
+  { id: 3, title: "Coming Soon", 
+    secondary: "ngenteni kkn", 
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
+    img: "/images/LandingFoto/comingsoon.png" 
+  },
 ]
 
 export const programItems = [
@@ -40,11 +63,31 @@ export const socialItems = [
 ]
 
 export const pages = [
-    { title: "KKN KELOMPOK 3", content: "Desa Srigonco Bantur", bgColor: "#ffffff" },
-    { title: "Latar Belakang", content: "Mengabdi untuk negeri, membangun desa dengan hati.", bgColor: "#e0f2fe" },
-    { title: "Visi & Misi", content: "Mewujudkan masyarakat yang mandiri, kreatif, dan sejahtera melalui pemberdayaan potensi lokal, kolaborasi, dan inovasi.", bgColor: "#dcfce7" },
-    { title: "Program Unggulan", content: "Digitalisasi UMKM dan Pengembangan Wisata Desa.", bgColor: "#f3e8ff" },
-    { title: "RoadMaps", content: "Kita Hanya Berusaha Sebaik Mungkin, Setelah itu Tuhan yang Mengatur segalanya", bgColor: "#ffe4e6" },
-    { title: "Dokumentasi", content: "Coming Sooonnnnnnn bruhhh.", bgColor: "#ffedd5" },
-    { title: "Terimakasih", content: "Tunggu hasil karya dan perjalanan kami selengkapnya in the next time.", bgColor: "#e0e7ff" }
+    { title: "KKN KELOMPOK 2", 
+      content: "Desa Srigonco Bantur", 
+      bgImage: "#ffffff" 
+    },
+    { title: "Latar Belakang", 
+      content: "Mengabdi untuk negeri, membangun desa dengan hati.", 
+      bgColor: "#e0f2fe" 
+    },
+    { title: "Visi & Misi", 
+      content: "Mewujudkan masyarakat yang mandiri, kreatif, dan sejahtera melalui pemberdayaan potensi lokal, kolaborasi, dan inovasi.", 
+      bgColor: "#dcfce7" 
+    },
+    { title: "Program Unggulan", 
+      content: "Digitalisasi UMKM dan Pengembangan Wisata Desa.", 
+      bgColor: "#f3e8ff" 
+    },
+    { title: "RoadMaps", 
+      content: "Kita Hanya Berusaha Sebaik Mungkin, Setelah itu Tuhan yang Mengatur segalanya", 
+      bgColor: "#ffe4e6" 
+    },
+    { title: "Dokumentasi", 
+      content: "Coming Sooonnnnnnn bruhhh.", 
+      bgColor: "#ffedd5" },
+    { title: "Terimakasih", 
+      content: "Tunggu hasil karya dan perjalanan kami selengkapnya in the next time.", 
+      bgColor: "#e0e7ff" 
+    }
 ]
