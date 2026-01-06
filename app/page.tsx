@@ -16,10 +16,12 @@ import ProgramSlider from './components/sections/ProgramSlider'
 import GalleryDraggable from './components/sections/GalleryDraggable'
 import RoadmapScroll, { RoadmapScrollHandle } from './components/sections/RoadmapScroll'
 import TransitionEffects, { TransitionEffectsHandle } from './components/TransitionEffects'
+import LandingPage from './components/LandingPage'
 
 gsap.registerPlugin(ScrollTrigger, Flip, Observer, CustomEase)
 
 export default function Home() {
+  const [showLanding, setShowLanding] = useState(true)
   const container = useRef<HTMLDivElement>(null)
   const detailsRef = useRef<HTMLDivElement>(null)
   const detailContentRef = useRef<HTMLDivElement>(null)
@@ -227,8 +229,15 @@ export default function Home() {
     requestAnimationFrame(performAnimation)
   })
 
+  const handleGetStarted = () => {
+    setShowLanding(false)
+  }
+
   return (
-    <main ref={container} className="bg-white text-black w-full h-screen overflow-hidden relative">
+    <>
+      {showLanding && <LandingPage onGetStarted={handleGetStarted} />}
+      
+      <main ref={container} className="bg-white text-black w-full h-screen overflow-hidden relative">
       
       {/* Transition Effects Layer */}
       <TransitionEffects ref={effectsRef} />
@@ -384,5 +393,6 @@ export default function Home() {
         </section>
       ))}
     </main>
+    </>
   )
 }
