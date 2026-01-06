@@ -12,8 +12,15 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [currentTime, setCurrentTime] = useState(new Date())
   const [audioPlaying, setAudioPlaying] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.5
     }
@@ -37,17 +44,22 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
     }
 
     // Try to play on any user interaction
-    document.addEventListener('click', playAudio, { once: true })
-    document.addEventListener('touchstart', playAudio, { once: true })
+    const handleClick = (e: MouseEvent | TouchEvent) => {
+      playAudio()
+    }
+
+    document.addEventListener('click', handleClick, { once: true })
+    document.addEventListener('touchstart', handleClick, { once: true })
 
     return () => {
       clearInterval(timer)
-      document.removeEventListener('click', playAudio)
-      document.removeEventListener('touchstart', playAudio)
+      document.removeEventListener('click', handleClick)
+      document.removeEventListener('touchstart', handleClick)
     }
-  }, [audioPlaying])
+  }, [audioPlaying, isMounted])
 
-  const toggleAudio = () => {
+  const toggleAudio = (e: React.MouseEvent) => {
+    e.stopPropagation()
     if (audioRef.current) {
       if (audioPlaying) {
         audioRef.current.pause()
@@ -55,17 +67,23 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
       } else {
         audioRef.current.volume = 0.3
         audioRef.current.play()
-        setAudioPlaying(true)
+          .then(() => setAudioPlaying(true))
+          .catch(error => console.log("Audio play error:", error))
       }
     }
   }
 
   const formatTime = (date: Date) => {
+    if (!isMounted) return '00:00 AM'
     return date.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit',
       hour12: true 
     })
+  }
+
+  if (!isMounted) {
+    return null
   }
 
   return (

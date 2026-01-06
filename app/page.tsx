@@ -46,10 +46,16 @@ export default function Home() {
   }, [])
   
   const { contextSafe } = useGSAP(() => {
+    // Skip GSAP initialization if landing page is still showing
+    if (showLanding) return
+
     const sections = gsap.utils.toArray<HTMLElement>('.page-section')
     const images = gsap.utils.toArray<HTMLElement>('.bg')
     const outerWrappers = gsap.utils.toArray<HTMLElement>('.outer')
     const innerWrappers = gsap.utils.toArray<HTMLElement>('.inner')
+    
+    // Check if elements exist before proceeding
+    if (!sections.length || !outerWrappers.length || !innerWrappers.length) return
     
     let currentIndex = -1
     let animating = false
@@ -120,7 +126,7 @@ export default function Home() {
       gotoSection(index, 1)
     }
 
-    Observer.create({
+    const observer = Observer.create({
       type: "wheel,touch,pointer",
       wheelSpeed: -1,
       onDown: () => {
@@ -152,7 +158,15 @@ export default function Home() {
     if (detailContentRef.current) gsap.set(detailContentRef.current, { yPercent: -100 })
     if (detailsRef.current) gsap.set(detailsRef.current, { visibility: "hidden" })
 
-  }, { scope: container })
+    // Cleanup function
+    return () => {
+      if (observer) observer.kill()
+      delete (window as any).navigateToSection
+    }
+
+  }, { scope: container, dependencies: [showLanding] })
+
+  const hideDetailsHandler = useRef<(() => void) | null>(null)
 
   const hideDetails = contextSafe(() => {
     if (!detailsRef.current || !detailContentRef.current) return
@@ -160,7 +174,10 @@ export default function Home() {
     const activeItem = document.querySelector('.item.active') as HTMLElement
     if (!activeItem) return
 
-    document.removeEventListener('click', hideDetails as any)
+    if (hideDetailsHandler.current) {
+      document.removeEventListener('click', hideDetailsHandler.current as any)
+      hideDetailsHandler.current = null
+    }
     gsap.set(detailsRef.current, { overflow: "hidden" })
 
     const state = Flip.getState(detailsRef.current)
@@ -224,6 +241,12 @@ export default function Home() {
 
         gsap.to(".item", { opacity: 0.3, stagger: { amount: 0.7, from: "center", grid: "auto" } }).kill(target)
         gsap.to(container.current, { backgroundColor: "#888", duration: 1, delay: 0.3 })
+        
+        // Setup hide on click outside
+        hideDetailsHandler.current = hideDetails
+        setTimeout(() => {
+          document.addEventListener('click', hideDetails as any)
+        }, 100)
     }
 
     requestAnimationFrame(performAnimation)
@@ -235,9 +258,10 @@ export default function Home() {
 
   return (
     <>
-      {showLanding && <LandingPage onGetStarted={handleGetStarted} />}
-      
-      <main ref={container} className="bg-white text-black w-full h-screen overflow-hidden relative">
+      {showLanding ? (
+        <LandingPage onGetStarted={handleGetStarted} />
+      ) : (
+        <main ref={container} className="bg-white text-black w-full h-screen overflow-hidden relative">
       
       {/* Transition Effects Layer */}
       <TransitionEffects ref={effectsRef} />
@@ -393,6 +417,7 @@ export default function Home() {
         </section>
       ))}
     </main>
+      )}
     </>
   )
 }

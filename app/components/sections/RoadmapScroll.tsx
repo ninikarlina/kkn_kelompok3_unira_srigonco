@@ -12,11 +12,14 @@ const RoadmapScroll = forwardRef<RoadmapScrollHandle>((props, ref) => {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isAnimating = useRef(false);
+  const lastDirection = useRef(0);
 
   useGSAP(() => {
     const items = gsap.utils.toArray<HTMLElement>('.roadmap-item');
     const slides = gsap.utils.toArray<HTMLElement>('.roadmap-slide');
     const fill = document.querySelector('.roadmap-fill');
+
+    if (!items.length || !slides.length || !fill) return;
 
     // Initial state
     gsap.set(fill, { scaleY: 1 / items.length, transformOrigin: "top" });
@@ -41,30 +44,71 @@ const RoadmapScroll = forwardRef<RoadmapScrollHandle>((props, ref) => {
 
     tlRef.current = tl;
 
+    // Cleanup function
+    return () => {
+      if (tlRef.current) {
+        tlRef.current.kill();
+        tlRef.current = null;
+      }
+      isAnimating.current = false;
+      setCurrentIndex(0);
+    };
+
   }, { scope: containerRef });
 
   useImperativeHandle(ref, () => ({
     scroll: (direction: number) => {
-      if (isAnimating.current || !tlRef.current) return true;
+      if (!tlRef.current) return false;
+      
+      // If already animating and same direction, ignore
+      if (isAnimating.current && lastDirection.current === direction) {
+        return true;
+      }
 
       const nextIndex = currentIndex + direction;
 
-      // Check boundaries
-      if (nextIndex < 0) return false; // Let parent handle prev section
-      if (nextIndex >= roadmapItems.length) return false; // Let parent handle next section
+      // Check boundaries - return false to let parent handle navigation
+      if (nextIndex < 0) {
+        isAnimating.current = false;
+        return false; // At start, let parent go to prev section
+      }
+      if (nextIndex >= roadmapItems.length) {
+        isAnimating.current = false;
+        return false; // At end, let parent go to next section
+      }
 
+      // We can handle this scroll
       isAnimating.current = true;
+      lastDirection.current = direction;
       setCurrentIndex(nextIndex);
 
       if (direction > 0) {
         tlRef.current.tweenTo(`step-${nextIndex}`, {
-            onComplete: () => { isAnimating.current = false; }
+            duration: 0.6,
+            ease: "power2.inOut",
+            onComplete: () => { 
+              isAnimating.current = false;
+              lastDirection.current = 0;
+            },
+            onInterrupt: () => {
+              isAnimating.current = false;
+              lastDirection.current = 0;
+            }
         });
       } else {
         // If going back to 0, tween to 0 (start)
         const label = nextIndex === 0 ? 0 : `step-${nextIndex}`;
         tlRef.current.tweenTo(label, {
-            onComplete: () => { isAnimating.current = false; }
+            duration: 0.6,
+            ease: "power2.inOut",
+            onComplete: () => { 
+              isAnimating.current = false;
+              lastDirection.current = 0;
+            },
+            onInterrupt: () => {
+              isAnimating.current = false;
+              lastDirection.current = 0;
+            }
         });
       }
 

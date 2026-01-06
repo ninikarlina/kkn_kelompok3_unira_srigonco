@@ -1,10 +1,20 @@
 "use client"
 
-import LiquidEther from '../components/LiquidEther';
+import { memo, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import ProfileCard from '../components/ProfileCard';
 import profileCards from '../../profilecard.json';
 
-export default function Page() {
+// Lazy load LiquidEther with no SSR
+const LiquidEther = dynamic(() => import('../components/LiquidEther'), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%', backgroundColor: 'black' }} />
+});
+
+// Memoize ProfileCard wrapper
+const MemoizedProfileCard = memo(ProfileCard);
+
+function Page() {
   return (
     <div
         style={{
@@ -13,37 +23,31 @@ export default function Page() {
             position: "relative",
             overflow: "hidden",
             overflowX: "hidden",
-            fontFamily: "Arial, sans-serif",
+            fontFamily: "'Roboto', sans-serif",
             backgroundColor: "black",
   }}
   >
-      {/* Background LiquidEther */}
+      {/* Background LiquidEther - Optimized */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         <LiquidEther
           colors={[
-            '#5227FF', // ungu biru
-            '#FF9FFC', // pink
-            '#B19EEF', // lavender
-            '#00E5FF', // cyan
-            '#00FF9C', // mint
-            '#FFD166', // kuning lembut
-            '#FF6B6B', // coral
-            '#6CFF95', // hijau muda
-            '#FFA07A', // salmon
-            '#8BE9FD'  // biru pastel
+            '#5227FF',
+            '#FF9FFC',
+            '#B19EEF',
+            '#00E5FF',
+            '#00FF9C'
           ]}
-
-          mouseForce={100}
-          cursorSize={100}
+          mouseForce={80}
+          cursorSize={80}
           isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
+          viscous={20}
+          iterationsViscous={16}
+          iterationsPoisson={16}
+          resolution={0.35}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
+          autoSpeed={0.4}
+          autoIntensity={1.8}
           takeoverDuration={0.25}
           autoResumeDelay={3000}
           autoRampDuration={0.6}
@@ -74,6 +78,7 @@ export default function Page() {
           borderRadius: '10px',
           maxWidth: '90vw',
           wordWrap: 'break-word',
+
         }}>
           Welcome to Portfolio KKN-T Kelompok 2
         </h1>
@@ -86,6 +91,7 @@ export default function Page() {
           padding: '10px',
           borderRadius: '5px',
           maxWidth: '90vw',
+          fontFamily: '"Roboto", sans-serif',
         }}>
           belum ada tag line guys nanti nanti ditambahin
         </p>
@@ -113,8 +119,8 @@ export default function Page() {
         }}
         >
           {profileCards.map((card, index) => (
-            <div key={index} >
-              <ProfileCard
+            <div key={`profile-${card.handle || index}`} >
+              <MemoizedProfileCard
                 {...card}
               />
             </div>
@@ -144,3 +150,5 @@ export default function Page() {
     </div>
   );
 }
+
+export default memo(Page);
