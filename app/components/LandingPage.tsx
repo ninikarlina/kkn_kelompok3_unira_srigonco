@@ -112,7 +112,7 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
       {/* Status Bar */}
       <div className="status-bar">
         <div className="status-bar-left">
-          <span className="status-item">⚫ KKN Portfolio - Kelompok 3</span>
+          <span className="status-item">⚫ KKN Portfolio - Kelompok 2</span>
         </div>
         <div className="status-bar-center">
             <div className="marquee">
