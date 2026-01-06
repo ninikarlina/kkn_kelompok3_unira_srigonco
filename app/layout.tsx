@@ -19,8 +19,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "KKN Portfolio - Kelompok 3",
-  description: "Portfolio KKN-T Kelompok 3 Desa Srigonco Bantur",
+  title: "KKN Portfolio - Kelompok 2",
+  description: "Portfolio KKN-T Kelompok 2 Desa Srigonco Bantur",
   icons: {
     icon: '/logokkn.svg',
     shortcut: '/logokkn.svg',

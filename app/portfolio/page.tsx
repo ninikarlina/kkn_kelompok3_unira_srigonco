@@ -144,7 +144,7 @@ function Page() {
           color: 'black',
           fontSize: 'clamp(0.875rem, 2vw, 1rem)',
         }}>
-          KKN-T kelompok 3 Desa Srigonco Bantur
+          KKN-T kelompok 2 Desa Srigonco Bantur
         </p>
       </footer>
     </div>
